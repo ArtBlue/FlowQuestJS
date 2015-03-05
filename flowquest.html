@@ -1,0 +1,183 @@
+<!doctype html>
+<html>
+<head>
+<title>Flowquest JS</title>
+<style type="text/css">
+body {
+	font-family: Arial;
+}
+.fq-question {
+	color: #555;
+	border: 1px solid #ccc;
+	background: #efefef;
+	padding: 10px;
+	margin: 10px 0;
+}
+
+.fq-option {
+	cursor: pointer;
+	color: #999;
+	background: #fff;
+	padding: 3px 6px;
+	margin: 0 0 0 10px;
+	border: 1px solid #999;
+}
+
+.fq-option:hover {
+	background: #999;
+	color: #fff;
+	border-color: #fff;
+}
+</style>
+<script type="text/javascript">
+
+var fq_worldview = {
+	"containerID": "flowquest_container",
+	"questions": {
+		1: {
+			"question": "Does God exist?",
+			"options": {
+				"yes": {
+					"label": "Yes",
+					"val": "god",
+					"nextQ": 2
+				},
+				"no": {
+					"label": "No",
+					"val": "no-god",
+					"nextQ": 2
+				}
+			}
+		}
+		, 2: {
+			"question": "Do many Gods exist?",
+			"options": {
+				"yes": {
+					"label": "Yes",
+					"val": "many-gods",
+					"nextQ": null
+				},
+				"no": {
+					"label": "No",
+					"val": "one-god",
+					"nextQ": 3
+				}
+			}
+		}
+		, 3: {
+			"question": "Is God in control of the world now?",
+			"options": {
+				"yes": {
+					"label": "Yes",
+					"val": "god-in-control",
+					"nextQ": 4
+				},
+				"no": {
+					"label": "No",
+					"val": "god-not-in-control",
+					"nextQ": null
+				}
+			}
+		}
+		, 4: {
+			"question": "Does God exist independantly of the world?",
+			"options": {
+				"yes": {
+					"label": "Yes",
+					"val": "god-independant",
+					"nextQ": 5
+				},
+				"no": {
+					"label": "No",
+					"val": "god-not-independant",
+					"nextQ": 6
+				}
+			}
+		}
+		, 5: {
+			"question": "Is God involved in the world?",
+			"options": {
+				"yes": {
+					"label": "Yes",
+					"val": "god-involved",
+					"nextQ": 6
+				}
+				, "no": {
+					"label": "No",
+					"val": "god-uninvolved",
+					"nextQ": null
+				}
+			}
+		}
+		, 6: {
+			"question": "Can God be known personally?",
+			"options": {
+				"yes": {
+					"label": "Yes",
+					"val": "canbe-known-personally",
+					"nextQ": 7
+				},
+				"no": {
+					"label": "No",
+					"val": "cantbe-known-personally",
+					"nextQ": null
+				}
+			}
+		}
+		, 7: {
+			"question": "Did God make Himself known through the man, Jesus of Nazareth?",
+			"options": {
+				"yes": {
+					"label": "Yes",
+					"val": "jesus-god",
+					"nextQ": null
+				},
+				"no": {
+					"label": "No",
+					"val": "jesus-not-god",
+					"nextQ": null
+				}
+			}
+		}
+	},
+	"answers":
+		{
+			patterns: {
+				"god|many-gods|": {
+					"position": "Polytheist",
+					"content": "You are a polytheist."
+				}
+				, "god|one-god|god-not-in-control|": {
+					"position": "Deist",
+					"content": "You are a deist."
+				}
+				, "god|one-god|god-in-control|god-independant|god-uninvolved|": {
+					"position": "Deist",
+					"content": "You are a deist."
+				}
+				, "god|one-god|god-in-control|god-independant|god-involved|cantbe-known-personally|" : {
+					"position": "Weak Agnostic",
+					"content": "You are a weak agnostic."
+				}
+				, "god|one-god|god-in-control|god-independant|god-involved|canbe-known-personally|jesus-god|" : {
+					"position": "Theist, Christian",
+					"content": "You are a Theist and a Christian."
+				}
+			}
+		}
+	
+}
+
+	</script>
+	<script type="text/javascript" src="flowquest.js"></script>
+	<script type="text/javascript">
+	document.addEventListener("DOMContentLoaded", function() {
+		flowquest(fq_worldview);
+	}, false);
+</script>
+</head>
+<body>
+	<h3>Flowquest JS</h3>
+	<div id="flowquest_container"></div>
+</body>
+</html>
