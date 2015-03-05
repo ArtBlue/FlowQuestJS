@@ -72,10 +72,7 @@ var flowquest = function(fq) {
 				elClasses: questionClasses
 			});
 
-			var aKeys = Object.keys(oOptions);
-
 			for(var optName in oOptions) {
-
 				// add options
 				_appendChild({
 					elParent: questionEl,
@@ -95,8 +92,6 @@ var flowquest = function(fq) {
 			_start();
 		}()
 	;
-
-	// private functions
 	
 	/**
 	 * Answer selection callback
