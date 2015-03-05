@@ -1,17 +1,51 @@
 /**
- * Flowquest JS
+ *  Flowquest JS
+ *  @description Flowquest is a flowchart questionaire utility that allows you to create any questionaire you want by feeding in your own data. The only requirement is that the data object needs to conform to the specific pattern expected.
+ *  @copyright 	Copyright (c) 2015 Arthur Khachatryan
+ *  @author 	Arthur Khachatryan 	<arthur@aspiremedia.net>
+ *  @license 	http://opensource.org/licenses/MIT 	MIT License
+ *  @version 	0.02
+ *  @beta
  */
 var flowquest = function(fq) {
-
+	/**
+	 * local reference to top level questions object
+	 * @type {object}
+	 */
 	var oQuestions = fq.questions
+		/**
+		 * keep track of current question
+		 * @type {number}
+		 */
 		, currentQueston = 1
+		/**
+		 * answers object
+		 * @type {object}
+		 */
 		, oAnswers = fq.answers
-		//, nAnswersLengh = aAnswers.length
+		/**
+		 * selector for container element
+		 * @type {string}
+		 */
 		, sContainer = fq.containerID
+		/**
+		 * placeholder for the container element
+		 * @type {DOMElement}
+		 */
 		, elContainer
+		/**
+		 * start flowquest processing
+		 * @param  {object} 	data 	the flowquest data object
+		 * @return {void}      			nothing 
+		 */
 		, _start = function (data) {
 			_buildQuestion(currentQueston);
 		}
+		/**
+		 * build a question
+		 * @param  {number} 	qid 	the question number to build
+		 * @return {void}     			nothing 
+		 */ 
 		, _buildQuestion = function (qid) {
 			// questions
 			var thisQ = oQuestions[qid]
@@ -66,8 +100,10 @@ var flowquest = function(fq) {
 	
 	/**
 	 * Answer selection callback
-	 * @this 	{DOMElement}   	The DOM element of the answer
-	 * @return 	{DOMElement}  	The DOM element of the answer
+	 * @this 		{DOMElement}   	The DOM element of the answer
+	 * @property 	{string} 		answerVal 	the string of the answer
+	 * @property 	{string} 		dataVal 	the answer data value
+	 * @return 		{DOMElement}  	The DOM element of the answer
 	 */
 	function _recordAnswer() {
 		var answerVal = _getAttr(this,'data-answer') // @todo centralize this to remove duplication
@@ -83,11 +119,13 @@ var flowquest = function(fq) {
 
 	/**
 	 * Move to the next question
-	 * @this {DOMElement} The DOM element of the current question
-	 * @return {DOMElement} The dom element of the next question
+	 * @param 	{DOMElement} 	thisQ			the DOM element of the current question
+	 * @param 	{string} 		thisAnswerData 	the answer data string 
+	 * @return 	{void}			nothing
 	 */
 	function _nextQuestion(thisQ, thisAnswerData) {
-		thisQ.parentNode.style.display = 'none';
+		// hide the whole question, not just the current answer selection
+		_hideEl(thisQ.parentNode);
 
 		var thisAnswerString = thisQ.innerHTML;
 
@@ -112,7 +150,7 @@ var flowquest = function(fq) {
 	}
 
 	/**
-	 * End all questions
+	 * End all questions, record the results into DOM
 	 * @return {void} nothin
 	 */
 	function _endAllQuestions() {
@@ -164,12 +202,15 @@ var flowquest = function(fq) {
 		return el.getAttribute(attr);
 	}
 
-	function _hideElement() {
-		console.log(this);
-		this.style.display = 'none';
-		return this;
+	/**
+	 * Hide element
+	 * @param  {DOMElement} 	el 	the DOM element
+	 * @return {DOMElement}    		the DOM element to be hidden
+	 */
+	function _hideEl(el) {
+		el.style.display = 'none';
+		return el;
 	}
-	
 	
 	/**
 	 * Get element
@@ -183,12 +224,22 @@ var flowquest = function(fq) {
 		return document.getElementById(sel);
 	}
 
+	/**
+	 * Append DOM element with its own features to parent element
+	 * @param  		{object} 		args 				the arguments object
+	 * @property 	{DOMElement} 	args.elParent 		the parent DOM element   
+	 * @property 	{string} 		args.newTag 		the new HTML tag to be created  
+	 * @property 	{string} 		args.newElID 		the new ID to be applied to the element being created  
+	 * @property 	{array} 		args.newElClasses 	the list of classes to be added to the element being created 
+	 * @property 	{array} 		args.attribs 		the list of attribute object for name and value to be added to the element being created
+	 * @property 	{string} 		args.sText 			the text to be added to the DOM node 
+	 * @return 		{DOMElement}      					the newly created DOM element 
+	 */
 	function _appendChild (args) {
 		var elParent       = args.elParent
 			, newTag       = args.newTag
 			, newElID      = args.newElID
 			, newEl        = document.createElement(newTag)
-			//, newElAttr    = args.attr ? { attrName: args.attr.aName, attrVal: args.attr.aVal } : []
 			, newElClasses = args.elClasses
 			, newElAttr    = args.attribs || null
 			, i = 0
@@ -198,7 +249,8 @@ var flowquest = function(fq) {
 
 		if (args.sText) {
 			var newContent = document.createTextNode(args.sText);
-			newEl.appendChild(newContent); //add the text node to the newly created div.
+			//add the text node to the newly created div.
+			newEl.appendChild(newContent);
 		}
 		if (newElClasses) {
 			newEl.className = newElClasses;
