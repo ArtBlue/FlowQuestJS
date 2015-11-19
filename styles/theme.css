@@ -27,7 +27,5 @@ body {
 }
 
 .fq-option:hover {
-	background: #999;
-	color: #fff;
-	border-color: #fff;
+	box-shadow: 0 0 3px 1px #999;
 }
