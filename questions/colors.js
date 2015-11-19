@@ -1,12 +1,6 @@
-<!doctype html>
-<html>
-<head>
-<title>Flowquest JS</title>
-<link rel="stylesheet" type="text/css" href="styles/theme.css">
-<link rel="stylesheet" type="text/css" href="styles/colors.css">
-
-<script type="text/javascript">
-
+/**
+ * Determine what kind of color you like specifically
+ */
 var fq_colors = {
 	"containerID": "flowquest_container",
 	"questions": {
@@ -353,17 +347,3 @@ var fq_colors = {
 		}
 	}
 }
-
-	</script>
-	<script type="text/javascript" src="flowquest.js"></script>
-	<script type="text/javascript">
-	document.addEventListener("DOMContentLoaded", function() {
-		flowquest(fq_colors);
-	}, false);
-</script>
-</head>
-<body>
-	<h3>Flowquest JS</h3>
-	<div id="flowquest_container"></div>
-</body>
-</html>

@@ -119,6 +119,7 @@ var flowquest = function(fq) {
                 , newValData = oReferences.OptValData
                 , i = 0
                 , oOptions = thisQ['options']
+                , sCustomOptionClasses
             ;
             
             var questionEl = _appendChild({
@@ -130,12 +131,15 @@ var flowquest = function(fq) {
             });
 
             for(var optName in oOptions) {
+                // if there are custom classes used in options...
+                sOptionClasses = oOptions[optName].classes || '';
+
                 // add options
                 _appendChild({
                     elParent: questionEl,
                     newTag: newOptTag,
                     newElID: questionTagID + '-' + newOptElPrefix + optName,
-                    elClasses: newOptElClasses,
+                    elClasses: newOptElClasses + ' ' + sOptionClasses,
                     attribs: [
                         { aName: newOptData, aVal: oOptions[optName].val },
                         { aName: newValData, aVal: optName }

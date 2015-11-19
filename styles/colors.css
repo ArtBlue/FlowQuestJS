@@ -1,0 +1,184 @@
+
+/*
+	Colors Demo Stylesheet
+	by Arthur Khachatryan
+
+	This stylesheet is for customizing the styling for various questions, options, and answers specific to the colors demo. It is meant to demonstrate the flexibility of working with Flowquest to create a custom flowchart questionarire. Simply pass in your classes in the configuration file you use when instantiating Flowquest...
+
+	"questions": {
+		1: {
+			"question": "What is your favorite color hue?",
+			"options": {
+				"red": {
+					"label": "Red",
+					"val": "red",
+					"classes": "hue-red",
+					"nextQ": 2
+				},
+				"green": {
+					"label": "Green",
+					"val": "green",
+					"classes": "hue-green",
+					"nextQ": 7
+				},
+				"blue": {
+					"label": "Blue",
+					"val": "blue",
+					"classes": "hue-blue",
+					"nextQ": 13
+				},
+				"yellow": {
+					"label": "Yellow",
+					"val": "yellow",
+					"classes": "hue-yellow",
+					"nextQ": 16
+				}
+			}
+		}
+ */
+
+
+
+/**
+ * Favorite Base Colors
+ */
+.hue-red {
+	background: rgb(255,0,0);
+	color: white;
+}
+
+.hue-green {
+	background: rgb(0,255,0);
+	color: black;
+}
+
+.hue-blue {
+	background: rgb(0,0,255);
+	color: white;
+}
+
+.hue-yellow {
+	background: rgb(255,255,0);
+	color: black;
+}
+
+/**
+ * Favorite Shades
+ */
+
+/* REDS */
+.red-venetian {
+	background: #C80815;
+}
+
+.red-folly {
+	background: #FF004F;
+}
+
+.red-scarlet {
+	background: #FF2400;
+}
+
+.red-burgundy {
+	background: #800020;
+}
+
+.red-firebrick {
+	background: #B22222;
+}
+
+.red-dark {
+	background: #8B0000;
+}
+
+.red-orange {
+	background: #FF5349;
+}
+
+/* GREENS */
+.green-lawn {
+	background: #7CFC00;
+}
+
+.green-brunswick {
+	background: #1B4D3E;
+}
+
+.green-shamrock {
+	background: #45CEA2;
+}
+
+.green-spring {
+	background: #A7FC00;
+}
+
+.green-teal {
+	background: #00827F;
+}
+
+.green-pantone {
+	background: #00AD43;
+}
+
+.green-turquoise {
+	background: #A0D6B4;
+}
+
+/* BLUES */
+.blue-royal {
+	background: #041690;
+}
+
+.blue-midnight {
+	background: #191970;
+}
+
+.blue-ultramarine {
+	background: #4166F5;
+}
+
+.blue-denim {
+	background: #1560BD;
+}
+
+.blue-baby {
+	background: #A1CAF1;
+}
+
+.blue-dark {
+	background: #00008B;
+}
+
+.blue-cobalt {
+	background: #0047ab;
+}
+
+/* YELLOWS */
+.yellow-bus {
+	background: #FFD800;
+}
+
+.yellow-sunglow {
+	background: #FFCC33;
+}
+
+.yellow-rose {
+	background: #FFF000;
+}
+
+.yellow-canary {
+	background: #FFFF99;
+}
+
+.yellow-cyber {
+	background: #FFD300;
+}
+
+.yellow-jasmine {
+	background: #F8DE7E;
+}
+
+.yellow-pantone {
+	background: #FEDF00;
+}
+
