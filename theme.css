@@ -1,0 +1,33 @@
+body {
+	font-family: Arial;
+}
+.fq-question {
+	color: #555;
+	border: 1px solid #ccc;
+	background: #efefef;
+	padding: 10px;
+	margin: 10px 0;
+}
+
+.fq-question.fq-active {
+	display: inline-block;
+}
+
+.fq-question.fq-inactive {
+	display: none;
+}
+
+.fq-option {
+	cursor: pointer;
+	color: #999;
+	background: #fff;
+	padding: 3px 6px;
+	margin: 0 0 0 10px;
+	border: 1px solid #999;
+}
+
+.fq-option:hover {
+	background: #999;
+	color: #fff;
+	border-color: #fff;
+}

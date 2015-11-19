@@ -2,37 +2,12 @@
 <html>
 <head>
 <title>Flowquest JS</title>
-<style type="text/css">
-body {
-	font-family: Arial;
-}
-.fq-question {
-	color: #555;
-	border: 1px solid #ccc;
-	background: #efefef;
-	padding: 10px;
-	margin: 10px 0;
-}
-
-.fq-option {
-	cursor: pointer;
-	color: #999;
-	background: #fff;
-	padding: 3px 6px;
-	margin: 0 0 0 10px;
-	border: 1px solid #999;
-}
-
-.fq-option:hover {
-	background: #999;
-	color: #fff;
-	border-color: #fff;
-}
-</style>
+<link rel="stylesheet" type="text/css" href="theme.css">
 <script type="text/javascript">
 
 var fq_worldview = {
 	"containerID": "flowquest_container",
+	"usePushState" : false,
 	"questions": {
 		1: {
 			"question": "Does God exist?",
@@ -45,7 +20,7 @@ var fq_worldview = {
 				"no": {
 					"label": "No",
 					"val": "no-god",
-					"nextQ": 2
+					"nextQ": 8
 				}
 			}
 		}
@@ -139,6 +114,21 @@ var fq_worldview = {
 				}
 			}
 		}
+		, 8: {
+			"question": "Are the only things in existence material?",
+			"options": {
+				"yes": {
+					"label": "Yes",
+					"val": "only-material",
+					"nextQ": null
+				},
+				"no": {
+					"label": "No",
+					"val": "not-only-material",
+					"nextQ": null
+				}
+			}
+		}
 	},
 	"answers":
 		{
@@ -162,6 +152,15 @@ var fq_worldview = {
 				, "god|one-god|god-in-control|god-independant|god-involved|canbe-known-personally|jesus-god|" : {
 					"position": "Theist, Christian",
 					"content": "You are a Theist and a Christian."
+				}
+				// ----- question separation -----
+				, "no-god|only-material|": {
+					"position": "Atheist and Materialist",
+					"content": "You are an atheist who is also a materialist."
+				}
+				, "no-god|not-only-material|": {
+					"position": "Atheist and Naturalist",
+					"content": "You are an atheist who is a naturalist, but not necessarily a materialist."
 				}
 			}
 		}

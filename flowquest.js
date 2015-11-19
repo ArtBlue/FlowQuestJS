@@ -3,8 +3,9 @@
  *  @description Flowquest is a flowchart questionaire utility that allows you to create any questionaire you want by feeding in your own data. The only requirement is that the data object needs to conform to the specific pattern expected.
  *  @copyright  Copyright (c) 2015 Arthur Khachatryan
  *  @author     Arthur Khachatryan  <arthur@aspiremedia.net>
- *  @license    http://opensource.org/licenses/MIT  MIT License
+ *  @since      0.01
  *  @version    0.02
+ *  @license    http://opensource.org/licenses/MIT  MIT License
  *  @beta
  */
 var flowquest = function(fq) {
@@ -29,17 +30,73 @@ var flowquest = function(fq) {
          */
         , sContainer = fq.containerID
         /**
+         * should push state be used to track pages/page states in order to provide navigatability
+         * @type {boolean}
+         */
+        , bUsePushState = fq.usePushState
+        /**
          * placeholder for the container element
          * @type {DOMElement}
          */
         , elContainer
+        /**
+         * Object to keep track of all references 
+         * @type {Object}
+         */
+        , oReferences = {
+            QTag                : 'div'
+            , QTagPrefix        : 'fq-question-'
+            , QTagBaseClass     : 'fq-question'
+            , QTagActiveClass   : 'fq-active'
+            , QTagInactiveClass : 'fq-inactive'
+            , OptTag            : 'a'
+            , OptPrefix         : 'option-'
+            , OptClass          : 'fq-option'
+            , OptLblData        : 'data-answer'
+            , OptValData        : 'data-val'
+            , ATag              : 'div'
+            , ATagId            : 'answer-result'
+        }
         /**
          * start flowquest processing
          * @param  {object}     data    the flowquest data object
          * @return {void}               nothing 
          */
         , _start = function (data) {
+            console.log('starting...');
             _buildQuestion(currentQueston);
+
+            if (bUsePushState) {
+                window.addEventListener('popstate', function(e) {
+                    var 
+                        oQuestion = e.state
+                    ;
+                    // e.state is equal to the data-attribute of the last image we clicked
+                    console.log(oQuestion);
+                    _buildQuestion(oQuestion.qid);
+                });
+            }
+        }
+        /**
+         * Add new page to browser's history to make navigation possible
+         * @description Keep in mind that running this locally is likely to cause issues. A history state object cannot be created in a document with origin 'null'.
+         * @param       {number} quid   the question id number
+         * @param       {object} data   the question object
+         * @property    {string} title  the title of the new page adding to history
+         * @property    {string} url    the url of the new page adding to history
+         * @return {void}
+         */
+        , _newPageQuestion = function(qid, data) {
+            var 
+                title = data.question
+                , url = title.replace(' ', '-')
+                , oQuestion = {
+                    qid: qid,
+                    data: data
+                }
+            ;
+
+            history.pushState(oQuestion, title, url);
         }
         /**
          * build a question
@@ -49,17 +106,17 @@ var flowquest = function(fq) {
         , _buildQuestion = function (qid) {
             // questions
             var thisQ = oQuestions[qid]
-                , questionTag = 'div'
-                , questionTagID = 'fq-question-' + qid
-                , questionClasses = 'fq-question'
+                , questionTag = oReferences.QTag
+                , questionTagID = oReferences.QTagPrefix + qid
+                , questionClasses = oReferences.QTagBaseClass + ' ' + oReferences.QTagActiveClass
                 , questionTxt = qid + '. ' + thisQ.question
                 
                 // answer options
-                , newOptTag = 'a'
-                , newOptElPrefix = 'option-'
-                , newOptElClasses = 'fq-option'
-                , newOptData = 'data-answer'
-                , newValData = 'data-val'
+                , newOptTag = oReferences.OptTag
+                , newOptElPrefix = oReferences.OptPrefix
+                , newOptElClasses = oReferences.OptClass
+                , newOptData = oReferences.OptLblData
+                , newValData = oReferences.OptValData
                 , i = 0
                 , oOptions = thisQ['options']
             ;
@@ -86,6 +143,11 @@ var flowquest = function(fq) {
                     sText: oOptions[optName].label
                 }).addEventListener('click', _recordAnswer, false);
             }
+
+            // if push state setting is turned on, add question as a page to browser's history
+            if (bUsePushState) {
+                _newPageQuestion(qid,thisQ);
+            }
         }
         , _init = function() {
             elContainer = _getEl(sContainer);
@@ -101,8 +163,8 @@ var flowquest = function(fq) {
      * @return      {DOMElement}    The DOM element of the answer
      */
     function _recordAnswer() {
-        var answerVal = _getAttr(this,'data-answer') // @todo centralize this to remove duplication
-            , dataVal = _getAttr(this,'data-val')
+        var answerVal = _getAttr(this, oReferences.OptLblData) // @todo centralize this to remove duplication
+            , dataVal = _getAttr(this, oReferences.OptValData)
         ;
 
         // add answer to current question
@@ -179,8 +241,8 @@ var flowquest = function(fq) {
         // add answer to DOM
         var questionEl = _appendChild({
             elParent: elContainer,
-            newTag:   'div',
-            newElID:  'answer-result',
+            newTag:   oReferences.ATag,
+            newElID:  oReferences.ATagId,
             sText:    sResultPosition + ': ' + sResultContent
         });
     }
@@ -203,7 +265,10 @@ var flowquest = function(fq) {
      * @return {DOMElement}         the DOM element to be hidden
      */
     function _hideEl(el) {
-        el.style.display = 'none';
+        if (el.classList.contains(oReferences.QTagActiveClass)) {
+            el.classList.remove(oReferences.QTagActiveClass);
+            el.classList.add(oReferences.QTagInactiveClass);
+        }
         return el;
     }
     
