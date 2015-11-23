@@ -1,8 +1,8 @@
-var fq_worldview = {
+{
 	"containerID": "flowquest_container",
 	"usePushState" : false,
 	"questions": {
-		1: {
+		"1": {
 			"question": "Does God exist?",
 			"options": {
 				"yes": {
@@ -17,7 +17,7 @@ var fq_worldview = {
 				}
 			}
 		}
-		, 2: {
+		, "2": {
 			"question": "Do many Gods exist?",
 			"options": {
 				"yes": {
@@ -32,7 +32,7 @@ var fq_worldview = {
 				}
 			}
 		}
-		, 3: {
+		, "3": {
 			"question": "Is God in control of the world now?",
 			"options": {
 				"yes": {
@@ -47,7 +47,7 @@ var fq_worldview = {
 				}
 			}
 		}
-		, 4: {
+		, "4": {
 			"question": "Does God exist independantly of the world?",
 			"options": {
 				"yes": {
@@ -62,7 +62,7 @@ var fq_worldview = {
 				}
 			}
 		}
-		, 5: {
+		, "5": {
 			"question": "Is God involved in the world?",
 			"options": {
 				"yes": {
@@ -77,7 +77,7 @@ var fq_worldview = {
 				}
 			}
 		}
-		, 6: {
+		, "6": {
 			"question": "Can God be known personally?",
 			"options": {
 				"yes": {
@@ -92,7 +92,7 @@ var fq_worldview = {
 				}
 			}
 		}
-		, 7: {
+		, "7": {
 			"question": "Did God make Himself known through the man, Jesus of Nazareth?",
 			"options": {
 				"yes": {
@@ -107,7 +107,7 @@ var fq_worldview = {
 				}
 			}
 		}
-		, 8: {
+		, "8": {
 			"question": "Are the only things in existence material?",
 			"options": {
 				"yes": {
@@ -123,39 +123,36 @@ var fq_worldview = {
 			}
 		}
 	},
-	"answers":
-		{
-			patterns: {
-				"god|many-gods|": {
-					"position": "Polytheist",
-					"content": "You are a polytheist."
-				}
-				, "god|one-god|god-not-in-control|": {
-					"position": "Deist",
-					"content": "You are a deist."
-				}
-				, "god|one-god|god-in-control|god-independant|god-uninvolved|": {
-					"position": "Deist",
-					"content": "You are a deist."
-				}
-				, "god|one-god|god-in-control|god-independant|god-involved|cantbe-known-personally|" : {
-					"position": "Weak Agnostic",
-					"content": "You are a weak agnostic."
-				}
-				, "god|one-god|god-in-control|god-independant|god-involved|canbe-known-personally|jesus-god|" : {
-					"position": "Theist, Christian",
-					"content": "You are a Theist and a Christian."
-				}
-				// ----- question separation -----
-				, "no-god|only-material|": {
-					"position": "Atheist and Materialist",
-					"content": "You are an atheist who is also a materialist."
-				}
-				, "no-god|not-only-material|": {
-					"position": "Atheist and Naturalist",
-					"content": "You are an atheist who is a naturalist, but not necessarily a materialist."
-				}
+	"answers": {
+		"patterns": {
+			"god|many-gods|": {
+				"position": "Polytheist",
+				"content": "You are a polytheist."
+			}
+			, "god|one-god|god-not-in-control|": {
+				"position": "Deist",
+				"content": "You are a deist."
+			}
+			, "god|one-god|god-in-control|god-independant|god-uninvolved|": {
+				"position": "Deist",
+				"content": "You are a deist."
+			}
+			, "god|one-god|god-in-control|god-independant|god-involved|cantbe-known-personally|" : {
+				"position": "Weak Agnostic",
+				"content": "You are a weak agnostic."
+			}
+			, "god|one-god|god-in-control|god-independant|god-involved|canbe-known-personally|jesus-god|" : {
+				"position": "Theist, Christian",
+				"content": "You are a Theist and a Christian."
+			}
+			, "no-god|only-material|": {
+				"position": "Atheist and Materialist",
+				"content": "You are an atheist who is also a materialist."
+			}
+			, "no-god|not-only-material|": {
+				"position": "Atheist and Naturalist",
+				"content": "You are an atheist who is a naturalist, but not necessarily a materialist."
 			}
 		}
-	
+	}
 }
