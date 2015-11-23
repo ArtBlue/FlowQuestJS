@@ -34,3 +34,7 @@ body {
 .fq-option:hover {
 	box-shadow: 0 0 3px 1px #999;
 }
+
+#answer-result {
+	padding: 10px;
+}

@@ -218,6 +218,7 @@ var flowquest = function(fq) {
         var sAnswersPattern = ''
             , sResultContent
             , sResultPosition
+            , sClasses
         ;
 
         for (question in fq.questions) {
@@ -242,11 +243,15 @@ var flowquest = function(fq) {
         console.log(sAnswersPattern);
         console.log(sResultPosition,sResultContent);
 
+        // if there are custom classes used in answer...
+        sClasses = oAnswers.patterns[sAnswersPattern].classes || '';
+
         // add answer to DOM
         var questionEl = _appendChild({
             elParent: elContainer,
             newTag:   oReferences.ATag,
             newElID:  oReferences.ATagId,
+            elClasses: sClasses,
             sText:    sResultPosition + ': ' + sResultContent
         });
     }
