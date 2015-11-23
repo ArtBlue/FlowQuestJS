@@ -342,7 +342,8 @@ var fq_colors = {
 			}
 			, "yellow|yellow-pantone|": {
 				"position": "Pantone Yellow",
-				"content": "Your favorite color is Pantone Yellow."
+				"content": "Your favorite color is Pantone Yellow.",
+				"classes": "yellow-pantone"
 			}
 		}
 	}
