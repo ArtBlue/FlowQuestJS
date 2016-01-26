@@ -126,7 +126,7 @@ var flowquest = function(fq) {
                 elParent: elContainer,
                 newTag:   questionTag,
                 newElID:  questionTagID,
-                sText:    questionTxt,
+                sHTML:    questionTxt,
                 elClasses: questionClasses
             });
 
@@ -144,7 +144,7 @@ var flowquest = function(fq) {
                         { aName: newOptData, aVal: oOptions[optName].val },
                         { aName: newValData, aVal: optName }
                     ],
-                    sText: oOptions[optName].label
+                    sHTML: oOptions[optName].label
                 }).addEventListener('click', _recordAnswer, false);
             }
 
@@ -248,11 +248,11 @@ var flowquest = function(fq) {
 
         // add answer to DOM
         var questionEl = _appendChild({
-            elParent: elContainer,
-            newTag:   oReferences.ATag,
-            newElID:  oReferences.ATagId,
+            elParent:  elContainer,
+            newTag:    oReferences.ATag,
+            newElID:   oReferences.ATagId,
             elClasses: sClasses,
-            sText:    sResultPosition + ': ' + sResultContent
+            sHTML:     sResultPosition + ': ' + sResultContent
         });
     }
 
@@ -316,7 +316,9 @@ var flowquest = function(fq) {
 
         newEl.id = newElID;
 
-        if (args.sText) {
+        if (args.sHTML) {
+            newEl.innerHTML = args.sHTML;
+        } else if (args.sText) {
             var newContent = document.createTextNode(args.sText);
             //add the text node to the newly created div.
             newEl.appendChild(newContent);
