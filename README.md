@@ -9,7 +9,7 @@ FlowQuest is an interactive flowchart and questionnaire JavaScript library all i
 
 ## How It Works
 
-FlowQuest takes a specific question and answer flow provided via a JSON file, and creates a unique customized questionaire. With the initial question being analogous to a root of a tree, subsequent questions are branched off specific answers. In the color demo below (included in repo) the user's selection of "yellow" as his favorite color hue, leads him to a question about the specific shade of yellow he prefers. The answer leads him to the name of the specific color he prefers.
+FlowQuest takes a specific question and answer flow provided via a JSON file, and creates a unique customized questionnaire. With the initial question being analogous to a root of a tree, subsequent questions are branched off specific answers. In the color demo below (included in repo) the user's selection of "yellow" as his favorite color hue, leads him to a question about the specific shade of yellow he prefers. The answer leads him to the name of the specific color he prefers.
 
 #### Question 1:
 
